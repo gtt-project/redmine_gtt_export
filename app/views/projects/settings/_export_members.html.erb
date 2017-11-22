@@ -1,7 +1,5 @@
 <%= form_tag(project_members_export_path(@project, format: 'csv'), method: :get) do %>
 <p class="buttons">
-  <%= submit_tag l(:button_export), name: nil %>
+  <%= submit_tag l(:button_export_members), name: nil %>
 </p>
 <% end %>
-
-
