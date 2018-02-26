@@ -12,7 +12,7 @@ module RedmineGttExport
             name: 'export_members',
             action: :export_members,
             partial: 'projects/settings/export_members',
-            label: :label_export_members
+            label: :label_export_project
           }
         end
       end
