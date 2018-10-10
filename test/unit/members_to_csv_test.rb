@@ -13,7 +13,9 @@ class MembersToCsvTest < ActiveSupport::TestCase
 
     assert rows = CSV.parse(csv)
     assert headers = rows.shift
+    assert_equal 7, headers.size
     assert_equal I18n.t('field_login'), headers.first
+    assert_equal I18n.t('field_created_on'), headers.last
     assert rows.many?
     puts rows.inspect
   end

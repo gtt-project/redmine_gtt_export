@@ -14,7 +14,7 @@ module RedmineGttExport
     end
 
     COLUMNS = %w(
-      login firstname lastname mail project role
+      login firstname lastname mail project role created_on
     )
 
     def call
@@ -25,7 +25,8 @@ module RedmineGttExport
           csv << [
             user.login, user.firstname, user.lastname, user.mail,
             @project.identifier,
-            m.roles.map(&:name).join(@separator)
+            m.roles.map(&:name).join(@separator),
+            user.created_on
           ]
         end
       end
