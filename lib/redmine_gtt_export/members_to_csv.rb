@@ -20,7 +20,10 @@ module RedmineGttExport
     def call
       Redmine::Export::CSV.generate do |csv|
         csv << COLUMNS.map{|c| l "field_#{c}"}
-        @project.members.each do |m|
+        @project.members.
+          includes(:roles, principal: :email_address).
+          order("users.created_on DESC").each do |m|
+
           user = m.principal
           csv << [
             user.login, user.firstname, user.lastname, user.mail,
