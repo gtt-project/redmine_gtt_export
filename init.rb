@@ -13,7 +13,7 @@ Redmine::Plugin.register :redmine_gtt_export do
 
 end
 
-ActionDispatch::Callbacks.to_prepare do
+ActiveSupport::Reloader.to_prepare do
 
   RedmineGttExport.setup
 
