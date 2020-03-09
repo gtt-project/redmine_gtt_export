@@ -19,8 +19,13 @@ module RedmineGttExport
 
     def call
       user_custom_fields = UserCustomField.where(visible: true).sort.map{|cf| cf.name}
+      has_displayname = Redmine::Plugin.installed?(:redmine_privacy)
       Redmine::Export::CSV.generate do |csv|
-        csv << COLUMNS.map{|c| l "field_#{c}"}.concat(user_custom_fields)
+        headers = COLUMNS.map{|c| l "field_#{c}"}.concat(user_custom_fields)
+        if has_displayname
+          headers.concat([(l "field_displayname")])
+        end
+        csv << headers
         @project.members.
           includes(:roles, principal: :email_address).
           order("users.created_on DESC").each do |m|
@@ -39,6 +44,11 @@ module RedmineGttExport
           row.concat(user.visible_custom_field_values.map{|cfv|
             cfv.value
           })
+
+          # displayname
+          if has_displayname
+            row.concat([user.displayname])
+          end
 
           # Write row
           csv << row
