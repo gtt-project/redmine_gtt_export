@@ -21,10 +21,11 @@ module RedmineGttExport
       user_custom_fields = UserCustomField.where(visible: true).sort.map{|cf| cf.name}
       has_displayname = Redmine::Plugin.installed?(:redmine_privacy)
       Redmine::Export::CSV.generate do |csv|
-        headers = COLUMNS.map{|c| l "field_#{c}"}.concat(user_custom_fields)
+        headers = COLUMNS.map{|c| l "field_#{c}"}
         if has_displayname
           headers.concat([(l "field_displayname")])
         end
+        headers.concat(user_custom_fields)
         csv << headers
         @project.members.
           includes(:roles, principal: :email_address).
@@ -40,15 +41,15 @@ module RedmineGttExport
             user.created_on
           ]
 
-          # Custom fields
-          row.concat(user.visible_custom_field_values.map{|cfv|
-            cfv.value
-          })
-
           # displayname
           if has_displayname
             row.concat([user.displayname])
           end
+
+          # Custom fields
+          row.concat(user.visible_custom_field_values.map{|cfv|
+            cfv.value
+          })
 
           # Write row
           csv << row
