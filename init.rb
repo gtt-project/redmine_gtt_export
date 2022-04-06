@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'redmine'
-
 Redmine::Plugin.register :redmine_gtt_export do
   name 'Redmine GTT Exports Plugin'
   author 'Jens Krämer, Georepublic'
@@ -14,9 +12,11 @@ Redmine::Plugin.register :redmine_gtt_export do
 
 end
 
-ActiveSupport::Reloader.to_prepare do
-
+if Rails.version > '6.0' && Rails.autoloaders.zeitwerk_enabled?
   RedmineGttExport.setup
-
+else
+  ActiveSupport::Reloader.to_prepare do
+    RedmineGttExport.setup
+  end  
 end
 
