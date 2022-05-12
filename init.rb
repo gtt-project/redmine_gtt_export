@@ -6,9 +6,9 @@ Redmine::Plugin.register :redmine_gtt_export do
   author_url 'https://github.com/georepublic'
   url 'https://github.com/gtt-project/redmine_gtt_export'
   description 'Adds data export for project admins'
-  version '1.1.0'
+  version '2.0.0'
 
-  requires_redmine :version_or_higher => '3.4.0'
+  requires_redmine :version_or_higher => '4.0.0'
 
 end
 

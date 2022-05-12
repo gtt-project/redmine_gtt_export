@@ -6,11 +6,7 @@ This plugin enables project admins to export project member data.
 
 ## Requirements
 
-This plugin **requires PostgreSQL/PostGIS** and depends on the [`redmine_gtt` Plugin](https://github.com/gtt-project/redmine_gtt)!!!
-
-- Redmine >= 3.4.0
-- PostgreSQL >= 9.6
-- PostGIS >= 2.4
+- Redmine >= 4.0.0
 
 ## Installation
 
@@ -40,6 +36,9 @@ More information on installing (and uninstalling) Redmine plugins can be found h
 The GTT Project appreciates any [contributions](https://github.com/gtt-project/.github/blob/main/CONTRIBUTING.md)! Feel free to contact us for [reporting problems and support](https://github.com/gtt-project/.github/blob/main/CONTRIBUTING.md).
 
 ## Version History
+
+- 2.0.0 Support Redmine 5.0 and drop Redmine <= 3.4 support
+- 1.1.0 Publish on GitHub
 
 See [all releases](https://github.com/gtt-project/redmine_gtt_export/releases) with release notes.
 
