@@ -4,8 +4,8 @@ module RedmineGttExport
   class MembersToCsv
     include Redmine::I18n
 
-    def self.call(*_)
-      new(*_).call
+    def self.call(*args, **kwargs)
+      new(*args, **kwargs).call
     end
 
     def initialize(project)
